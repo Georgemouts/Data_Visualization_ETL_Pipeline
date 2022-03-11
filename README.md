@@ -3,7 +3,7 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
 
 ## Prerequisite :wave:
 
-- MySql - Download [here](https://www.mysql.com)
+- MySQL - Download [here](https://www.mysql.com)
 
 - MySQL Workbench - Download [here](https://dev.mysql.com/downloads/file/?id=509428) 
 
