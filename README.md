@@ -1,7 +1,7 @@
 # Data_Visualization_ETL_Pipeline
 Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Project
 
-## Prerequisite
+## Prerequisite :wave:
 
 MySql - Download [here](https://www.mysql.com)
 
