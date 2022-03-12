@@ -10,5 +10,5 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
 - The Dataset that we will be using is being downloaded from [TheWorldBank](https://data.worldbank.org/) and is the '[countries.csv](https://github.com/Georgemouts/Data_Visualization_ETL_Pipeline/blob/main/countries_data.csv)'
 
 ## Step 1 :
-1. We use the [CleanData.ipynb](https://github.com/Georgemouts/Data_Visualization_ETL_Pipeline/blob/main/CleanData.ipynb) to clean the data and extract only the ***NY***,***SP***and ***SE***  families of CodeIndicators
+1. We use the [CleanData.ipynb](https://github.com/Georgemouts/Data_Visualization_ETL_Pipeline/blob/main/CleanData.ipynb) to clean the countries.csv dataset and extract only the ***NY***,***SP***and ***SE***  families of CodeIndicators
 2. 
