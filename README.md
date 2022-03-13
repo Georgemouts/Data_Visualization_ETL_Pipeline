@@ -18,6 +18,9 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
  - indicates(id_country, id_ind, year, value)
 
 
+## Step 2 :
+
+
 
 
 
