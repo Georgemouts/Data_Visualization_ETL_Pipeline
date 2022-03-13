@@ -11,8 +11,9 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
 
 ## Step 1 :
 1. We use the [CleanData.ipynb](https://github.com/Georgemouts/Data_Visualization_ETL_Pipeline/blob/main/CleanData.ipynb) to clean the ***countries_data.csv*** dataset and extract only the ***NY***,***SP***and ***SE***  families of Code Indicators. We store the data in 3 csv files **countries.csv** , **indicators.csv** and **year_value.csv**.
- 
-2.We create a schema in MySQL Workbench and load the data (using the LOAD DATA INFILE statement).In MySQL database we have 3 tables
+2. We create a schema in MySQL Workbench and load the data (using the LOAD DATA INFILE statement).In MySQL database we have 3 tables
+3. 
+
 
 
 
