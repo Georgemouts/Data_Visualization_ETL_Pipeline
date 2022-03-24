@@ -1,5 +1,5 @@
 # Data_Visualization_ETL_Pipeline
-Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Project
+Visualizing country data with an ETL(Exract Transform Load) pipeline using DAO(Data Access Object) pattern. -UOI Project
 
 ## Prerequisite :wave:
 
