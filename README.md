@@ -20,7 +20,12 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
   - indicates(id_country, id_ind, year, value)
 
 
-## Step 2 :
+## Step 2 : Create packages -Start building the app 
+
+- View package: fxml files
+- Controller package : take inputs from javafx
+- DAO package : create objects that interact with MYSQL database
+- Model package :
 
 
 
