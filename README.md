@@ -21,6 +21,7 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
 
 
 ## Step 2 : Create packages -Start building the app :package:
+We created the structure of the app and then we did the  implementation.
 
 - View package: create the user interface with fxml files
 - Controller package : take inputs from fxml files and do some process if is needed
