@@ -22,8 +22,8 @@ Visualizing country data with an ETL(Exract Transform Load) pipeline -UOI Projec
 
 ## Step 2 : Create packages -Start building the app :package:
 
-- View package: fxml files
-- Controller package : take inputs from javafx
+- View package: create the user interface with fxml files
+- Controller package : take inputs from fxml files and do some process if is needed
 - DAO package : create objects that interact with MYSQL database
 - Model package :
 
