@@ -3,6 +3,7 @@ package main.java.dao;
 
 
 public abstract class Entity {
+	
 	private int id;
 	private String name;
 	private String code;
@@ -14,4 +15,8 @@ public abstract class Entity {
 	abstract public void setId(int id);
 	abstract public void setName(String name);
 	abstract public void setCode(String code);
+	
+
+	abstract public String toString();
+	
 }

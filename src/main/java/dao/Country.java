@@ -28,6 +28,12 @@ public class Country extends Entity {
 		return name;
 	}
 
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", name=" + name + ", code=" + code + "]";
+	}
+
+
 	public String getCode() {
 		return code;
 	}

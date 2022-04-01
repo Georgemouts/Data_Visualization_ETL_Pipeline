@@ -23,21 +23,6 @@ public class Controller2 implements Initializable {
 
     @FXML
     private Label Label2;
-
-    
-    public void test_ind(List<String> cname, List<String> iname, List<Integer> year) {
-    	CountryDAOMySQLImpl implc = new CountryDAOMySQLImpl();
-    	List<Integer> cid = implc.readCountryIdFromName(cname);
-    	
-    	IndicatorDAOMySQLImpl impli = new IndicatorDAOMySQLImpl();
-    	List<Integer> iid = impli.readIndicatorIdFromName(iname);
-    	ValueFromCountryAndIndicatorDAOMySQLImpl impl = new ValueFromCountryAndIndicatorDAOMySQLImpl();
-    	impl.readValueFromCountryAndIndicator(cid, iid, year);
-    	
-    	
-    }
-    
-    
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

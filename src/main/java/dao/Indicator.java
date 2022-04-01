@@ -3,6 +3,7 @@ package main.java.dao;
 public class Indicator extends Entity{
 	private int id;
 	private String name;
+	
 	private String code;
 	
 	
@@ -38,6 +39,11 @@ public class Indicator extends Entity{
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	@Override
+	public String toString() {
+		return "Indicator [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 	
 	

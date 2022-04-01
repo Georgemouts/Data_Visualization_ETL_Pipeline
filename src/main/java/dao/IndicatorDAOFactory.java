@@ -4,7 +4,7 @@ package main.java.dao;
 
 public class IndicatorDAOFactory {
 	
-	public static IndicatorDAO getIndicatorDao(String dbName) throws IllegalArgumentException { 
+	public static IndicatorDAO getIndicatorDAO(String dbName) throws IllegalArgumentException { 
 		
 		if (dbName == null || dbName.isEmpty())
 	        return null;

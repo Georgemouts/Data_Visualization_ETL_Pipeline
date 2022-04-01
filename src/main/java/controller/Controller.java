@@ -3,8 +3,8 @@ package main.java.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -15,12 +15,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import main.java.controller.charts.PlotTimelineChartController;
 import main.java.dao.Connector;
+import main.java.dao.CountryDAO;
+import main.java.dao.CountryDAOFactory;
+import main.java.dao.IndicatorDAO;
+import main.java.dao.IndicatorDAOFactory;
 import main.java.dao.Names;
+import main.java.dao.ValueFromCountryAndIndicatorDAO;
+import main.java.dao.ValueFromCountryAndIndicatorDAOFactory;
 
 public class Controller implements Initializable {
 	
@@ -90,17 +96,36 @@ public class Controller implements Initializable {
 	void Submit(ActionEvent event) throws IOException {  // If submit button is pressed, goto this method.
 		closeWindow(event);
 		// passDataToDB(selected_countries, selected_indicators);
-		Parent root = FXMLLoader.load(getClass().getResource("..//view//newWindow.fxml"));
-		Controller2 obj = new Controller2();
+		Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLPlotTimelineChart.fxml"));
 		
+		
+		
+		
+		
+		// ----------------- Testing -----------------
 		createYearsList();
-		obj.test_ind(selected_countries, selected_indicators, years);
 		
-		Stage new_window = new Stage();
-		new_window.setTitle("New window");
-		Scene scene = new Scene(root);
-		new_window.setScene(scene);
-		new_window.show();
+		ValueFromCountryAndIndicatorDAO obj2 = ValueFromCountryAndIndicatorDAOFactory.getValueFromCountryAndIndicatorDAO("mysql");
+		CountryDAO obj3 = CountryDAOFactory.getCountryDAO("mysql");
+		IndicatorDAO obj4 = IndicatorDAOFactory.getIndicatorDAO("mysql");
+		
+		Map<List<String>, Long> mapForChart;
+		List<Integer> cids = obj3.readCountryIdFromName(selected_countries);
+		List<Integer> iids = obj4.readIndicatorIdFromName(selected_indicators);
+		
+		
+		mapForChart = obj2.readValueFromCountryAndIndicator(cids, iids, years);
+		
+		
+		PlotTimelineChartController obj = new PlotTimelineChartController(mapForChart, Integer.parseInt(this.yearformat), 
+				Integer.parseInt(this.startingyear), Integer.parseInt(this.endingyear));
+		obj.plotChart();
+		System.gc();
+		
+		// obj.loadData();
+		// ----------------- Testing -----------------
+	
+		
 	}
 	
 	void closeWindow(ActionEvent event) {
@@ -160,6 +185,15 @@ public class Controller implements Initializable {
 	}
 	
 	
+	public List<String> getSelected_indicators() {
+		return selected_indicators;
+	}
+
+	public void setSelected_indicators(List<String> selected_indicators) {
+		this.selected_indicators = selected_indicators;
+	}
+
+
 	
 	
 	

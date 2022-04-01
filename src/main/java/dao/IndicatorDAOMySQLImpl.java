@@ -9,6 +9,7 @@ public class IndicatorDAOMySQLImpl implements IndicatorDAO {
 	private Connector connection;
 	private ResultSet queryResult;
 	private List<Integer> indicatorIds;
+	private List<String> indicatorNames;
 	
 	public IndicatorDAOMySQLImpl() {
 		this.connection = new Connector();	// TODO: maybe can me prototyped.
@@ -35,6 +36,49 @@ public class IndicatorDAOMySQLImpl implements IndicatorDAO {
 		}
 		return this.indicatorIds;
 	}
+	
+	
+	
+	@Override
+	public List<String> readIndicatorNameFromId(List<Integer> ids) {
+
+		for (Integer id: ids) {
+			String query = "SELECT name FROM indicator WHERE id  = '" + id + "';";
+			String name;
+	
+			try {
+				connection.connectWithDB();
+				queryResult = connection.executeQuery(query);
+				if (queryResult.next()) {
+					name = queryResult.getString("id");
+					this.indicatorNames.add(name);
+				} 
+			
+				}catch (SQLException ex) {
+					connection.perrSQL(ex);
+				}	
+		}
+		return this.indicatorNames;
+	}
+	
+	@Override
+	public String readSingleIndicatorNameFromId(int id) {
+		String query = "SELECT name FROM indicator WHERE id  = " + id + ";";
+		String name = "";
+	
+		try {
+			connection.connectWithDB();
+			queryResult = connection.executeQuery(query);
+			
+			if (queryResult.next()) 
+				name = queryResult.getString("name");
+			
+			}catch (SQLException ex) {
+				connection.perrSQL(ex);
+			}	
+		return name;
+	}
+		
 	
 	
 	

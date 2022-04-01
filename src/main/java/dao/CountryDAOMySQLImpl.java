@@ -10,6 +10,7 @@ public class CountryDAOMySQLImpl implements CountryDAO {
 	private Connector connection;
 	private ResultSet queryResult;
 	private List<Integer> countryIds;
+	private List<String> countryNames;
 	
 	public CountryDAOMySQLImpl() {
 		this.connection = new Connector();	// TODO: maybe can me prototyped.
@@ -37,6 +38,54 @@ public class CountryDAOMySQLImpl implements CountryDAO {
 		}
 		return this.countryIds;
 	}
+	
+	
+	
+	@Override
+	public List<String> readCountryNameFromId(List<Integer> ids) {
+
+		for (Integer id: ids) {
+			String query = "SELECT name FROM country WHERE country.id  = '" + id + "';";
+			String name;
+	
+			try {
+				connection.connectWithDB();
+				queryResult = connection.executeQuery(query);
+				if (queryResult.next()) {
+					name = queryResult.getString("id");
+					this.countryNames.add(name);
+				} 
+			
+				}catch (SQLException ex) {
+					connection.perrSQL(ex);
+				}	
+		}
+		return this.countryNames;
+	}
+	
+	
+	@Override
+	public String readSingleCountryNameFromId(int id) {
+		String query = "SELECT name FROM country WHERE country.id = " + id + ";";
+		String name = "";
+	
+		try {
+			connection.connectWithDB();
+			queryResult = connection.executeQuery(query);
+			
+			if (queryResult.next()) 
+				name = queryResult.getString("name");
+			
+			
+			}catch (SQLException ex) {
+				connection.perrSQL(ex);
+			}	
+		return name;
+	}
+	
+	
+	
+	
 
 	@Override
 	public void delete(String name) {
@@ -56,5 +105,7 @@ public class CountryDAOMySQLImpl implements CountryDAO {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 }

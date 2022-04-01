@@ -4,7 +4,7 @@ package main.java.dao;
 
 public class CountryDAOFactory{
 	
-	public static CountryDAO getCountryDao(String dbName) throws IllegalArgumentException { 
+	public static CountryDAO getCountryDAO(String dbName) throws IllegalArgumentException { 
 		
 		if (dbName == null || dbName.isEmpty())
 	        return null;
