@@ -1,24 +1,25 @@
 package main.java.model;
 
 import java.util.ArrayList;
+
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 
-public class PreprocessLinechartComponents {
+public class PreprocessScatterchartComponents {
 	private Map<List<String>, Long> valueFromIndicatorYearCountryMap;
 	
-	public PreprocessLinechartComponents(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
+	public PreprocessScatterchartComponents(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
 		this.valueFromIndicatorYearCountryMap = valueFromIndicatorYearCountryMap;
 	}
 	
 	
 	// TODO: move it to main.java.model 
-		public void addSeriesToLinechartLegend(LineChart lineChart) {
+		public void addSeriesToScatterchartLegend(ScatterChart scatterChart) {
 			List<List<String>> country_indicatorPairList = getCountry_IndicatorPairs(filterListFromYears());
 	        System.gc();
 	        
@@ -42,7 +43,7 @@ public class PreprocessLinechartComponents {
 	        	    series.getData().add(new XYChart.Data(Integer.parseInt(keyList.get(2)), value));
 	        	    
 	    		}
-	        	lineChart.getData().add(series);
+	        	scatterChart.getData().add(series);
 	        }		
 		}
 		

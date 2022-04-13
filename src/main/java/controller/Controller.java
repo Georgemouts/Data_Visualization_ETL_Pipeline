@@ -18,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import main.java.controller.charts.PlotBarChartController;
+import main.java.controller.charts.PlotScatterChartController;
 import main.java.controller.charts.PlotTimelineChartController;
 import main.java.dao.Connector;
 import main.java.dao.CountryDAO;
@@ -95,14 +97,15 @@ public class Controller implements Initializable {
 	@FXML
 	void Submit(ActionEvent event) throws IOException {  // If submit button is pressed, goto this method.
 		closeWindow(event);
-		// passDataToDB(selected_countries, selected_indicators);
-		Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLPlotTimelineChart.fxml"));
-		
-		
+		// Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLPlotTimelineChart.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLBarChart.fxml"));
+	
+
 		
 		
 		
 		// ----------------- Testing -----------------
+		
 		createYearsList();
 		
 		ValueFromCountryAndIndicatorDAO obj2 = ValueFromCountryAndIndicatorDAOFactory.getValueFromCountryAndIndicatorDAO("mysql");
@@ -122,7 +125,7 @@ public class Controller implements Initializable {
 		obj.plotChart();
 		System.gc();
 		
-		// obj.loadData();
+		
 		// ----------------- Testing -----------------
 	
 		

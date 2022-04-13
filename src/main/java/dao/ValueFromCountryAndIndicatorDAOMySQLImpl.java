@@ -52,7 +52,15 @@ public class ValueFromCountryAndIndicatorDAOMySQLImpl implements ValueFromCountr
 						
 						}catch (SQLException ex) {
 							connection.perrSQL(ex);
-					 	}
+					 	}finally {
+							
+							 try {
+								 queryResult.close();
+						        } catch (SQLException sqlEx) { } // ignore
+
+							 queryResult = null;
+						}
+					
 					country_indicator_year = new ArrayList<String>(Arrays.asList(country_name, indicator_name, ""));
 				}
 			}

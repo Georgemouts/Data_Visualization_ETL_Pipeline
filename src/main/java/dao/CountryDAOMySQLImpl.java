@@ -34,8 +34,16 @@ public class CountryDAOMySQLImpl implements CountryDAO {
 			
 				}catch (SQLException ex) {
 					connection.perrSQL(ex);
-				}	
+				}finally {
+					
+					 try {
+						 queryResult.close();
+				        } catch (SQLException sqlEx) { } // ignore
+
+					 queryResult = null;
+				}
 		}
+			
 		return this.countryIds;
 	}
 	
