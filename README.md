@@ -26,7 +26,7 @@ We created the structure of the app and then we did the  implementation.
 - View package: create the user interface with fxml files
 - Controller package : take inputs from fxml files and do some process if is needed
 - DAO package : create objects that interact with MYSQL database
-- Model package :
+
 
 
 
