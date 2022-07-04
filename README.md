@@ -28,6 +28,8 @@ We created the structure of the app and then we did the  implementation.
 - DAO package : create objects that interact with MYSQL database
 
 
+## SQL-Schema
+
 
 
 
