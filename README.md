@@ -30,7 +30,7 @@ We created the structure of the app and then we did the  implementation.
 
 ## SQL-Schema
 
-
+![alt text](https://github.com/Georgemouts/Data_Visualization_ETL_Pipeline/blob/main/img/Sql.png "Schema")
 
 
 
