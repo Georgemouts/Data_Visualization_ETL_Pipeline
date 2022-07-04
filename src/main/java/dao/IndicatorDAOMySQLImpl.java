@@ -12,7 +12,7 @@ public class IndicatorDAOMySQLImpl implements IndicatorDAO {
 	private List<String> indicatorNames;
 	
 	public IndicatorDAOMySQLImpl() {
-		this.connection = new Connector();	// TODO: maybe can me prototyped.
+		this.connection = Connector.getInstance();	
 		this.indicatorIds = new ArrayList<Integer>();
 	}
 	
@@ -20,7 +20,9 @@ public class IndicatorDAOMySQLImpl implements IndicatorDAO {
 	public List<Integer> readIndicatorIdFromName(List<String> names) {
 		
 		for (String name: names) {
+			
 			String query = "SELECT id FROM indicator WHERE name  = '" + name + "';";
+
 			int id = 0;
 			try {
 				connection.connectWithDB();

@@ -10,12 +10,17 @@ import java.util.List;
 
 public class Connector {
 	private Connection connect_me;
-
+	private static Connector singleInstance = null;
 	
 	public Connector() {
 		this.connect_me = null;
 	}
 	
+	public static Connector getInstance() {
+		if (singleInstance == null)
+			singleInstance = new Connector();
+		return singleInstance;
+	}
 	
 	public ResultSet executeQuery(String query) {
 		ResultSet rs = null;

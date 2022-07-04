@@ -9,6 +9,7 @@ import javafx.scene.chart.ScatterChart;
 import javafx.stage.Stage;
 import main.java.model.PreprocessLinechartComponents;
 import main.java.model.PreprocessScatterchartComponents;
+import main.java.model.TemplatePreprocessChartComponents;
 
 
  
@@ -37,13 +38,6 @@ public class PlotScatterChartController extends PlotChartController {
 	}
 	
 
-	
-	
-	/**
-	 * Every country-indicator pair is an individual XYChart.Series object.
-	 * 
-	 */
-	
 	@Override
 	public void plotChart() {
 		this.stage = new Stage();
@@ -65,7 +59,7 @@ public class PlotScatterChartController extends PlotChartController {
         //creating the chart
         scatterChart =  new ScatterChart<Number,Number>(xAxis,yAxis);
         
-        // lineChart.setTitle();
+  
         PreprocessScatterchartComponents preprocessing = new PreprocessScatterchartComponents(valueFromIndicatorYearCountryMap); 
         preprocessing.addSeriesToScatterchartLegend(scatterChart);
         
@@ -73,4 +67,46 @@ public class PlotScatterChartController extends PlotChartController {
         stage.setScene(scene);
         stage.show();
 	}
+
+	public static Map<List<String>, Long> getValueFromIndicatorYearCountryMap() {
+		return valueFromIndicatorYearCountryMap;
+	}
+
+	public static int getYearFormat() {
+		return yearFormat;
+	}
+
+	public static int getStartingYear() {
+		return startingYear;
+	}
+
+	public static int getEndingYear() {
+		return endingYear;
+	}
+
+	public static void setValueFromIndicatorYearCountryMap(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
+		PlotScatterChartController.valueFromIndicatorYearCountryMap = valueFromIndicatorYearCountryMap;
+	}
+
+	public static void setYearFormat(int yearFormat) {
+		PlotScatterChartController.yearFormat = yearFormat;
+	}
+
+	public static void setStartingYear(int startingYear) {
+		PlotScatterChartController.startingYear = startingYear;
+	}
+
+	public static void setEndingYear(int endingYear) {
+		PlotScatterChartController.endingYear = endingYear;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

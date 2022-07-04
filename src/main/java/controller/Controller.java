@@ -18,10 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-import main.java.controller.charts.PlotBarChartController;
-import main.java.controller.charts.PlotScatterChartController;
-import main.java.controller.charts.PlotTimelineChartController;
-import main.java.dao.Connector;
+import main.java.controller.charts.PlotChartController;
+import main.java.controller.charts.PlotChartControllerFactory;
 import main.java.dao.CountryDAO;
 import main.java.dao.CountryDAOFactory;
 import main.java.dao.IndicatorDAO;
@@ -35,9 +33,9 @@ public class Controller implements Initializable {
 	List<String> selected_countries = new ArrayList<String>();
 	List<String> selected_indicators = new ArrayList<String>();
 	List<Integer> years = new ArrayList<Integer>();
-	String startingyear, endingyear, yearformat;
+	String startingyear, endingyear, yearformat, typeOfChart;
 	
-	Connector conn = new Connector();
+	
 	
 	@FXML
 	private ComboBox countryComb;
@@ -49,30 +47,23 @@ public class Controller implements Initializable {
 	private ComboBox endingyearComb;
 	@FXML
 	private ComboBox yearformatComb;
+	@FXML
+    private ComboBox charttypeComb;
 	
     @FXML
-    private Button Submit_butt;
+    private Button submitButton;
    
 
 	@FXML
 	void Select1(ActionEvent event) {
 		String s = countryComb.getSelectionModel().getSelectedItem().toString();
-		// countryComb.setPromptText("Hey");
-		//countryComb.getSelectionModel().getSelectedIndex();
-		
 		selected_countries.add(s);
-		// conn.test(selected_countries);
 	}
 	
 	@FXML
 	void Select2(ActionEvent event) {
 		String s = indicatorComb.getSelectionModel().getSelectedItem().toString();
-		
-		// indicatorComb.getSelectionModel().getSelectedIndex();
-		
-		
 		selected_indicators.add(s);
-		// conn.test(selected_indicators);
 	}
 	
 	@FXML
@@ -90,46 +81,60 @@ public class Controller implements Initializable {
 		endingyear = endingyearComb.getSelectionModel().getSelectedItem().toString();
 	}
 	
-	
+	@FXML
+    void Select6(ActionEvent event) {
+		typeOfChart = charttypeComb.getSelectionModel().getSelectedItem().toString();
+    }
 	
 	
 	
 	@FXML
-	void Submit(ActionEvent event) throws IOException {  // If submit button is pressed, goto this method.
+	void Submit(ActionEvent event) throws IOException {  
+		// actions that succeed after pressing the submit button.
 		closeWindow(event);
-		// Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLPlotTimelineChart.fxml"));
-		Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLBarChart.fxml"));
+		
+		
+		
+		// create a test for getResourcePath
+		Parent root = FXMLLoader.load(getClass().getResource(getResourcePath(typeOfChart)));
 	
-
-		
-		
-		
-		// ----------------- Testing -----------------
 		
 		createYearsList();
 		
-		ValueFromCountryAndIndicatorDAO obj2 = ValueFromCountryAndIndicatorDAOFactory.getValueFromCountryAndIndicatorDAO("mysql");
-		CountryDAO obj3 = CountryDAOFactory.getCountryDAO("mysql");
-		IndicatorDAO obj4 = IndicatorDAOFactory.getIndicatorDAO("mysql");
+		ValueFromCountryAndIndicatorDAO indicates_table_accessor_obj = ValueFromCountryAndIndicatorDAOFactory.getValueFromCountryAndIndicatorDAO("mysql");
+		CountryDAO country_table_accessor_obj = CountryDAOFactory.getCountryDAO("mysql");
+		IndicatorDAO indicator_table_accessor_obj = IndicatorDAOFactory.getIndicatorDAO("mysql");
+		
+		
+		List<Integer> cids = country_table_accessor_obj.readCountryIdFromName(selected_countries);
+		List<Integer> iids = indicator_table_accessor_obj.readIndicatorIdFromName(selected_indicators);
 		
 		Map<List<String>, Long> mapForChart;
-		List<Integer> cids = obj3.readCountryIdFromName(selected_countries);
-		List<Integer> iids = obj4.readIndicatorIdFromName(selected_indicators);
+		mapForChart = indicates_table_accessor_obj.readValueFromCountryAndIndicator(cids, iids, years);
 		
 		
-		mapForChart = obj2.readValueFromCountryAndIndicator(cids, iids, years);
-		
-		
-		PlotTimelineChartController obj = new PlotTimelineChartController(mapForChart, Integer.parseInt(this.yearformat), 
+		PlotChartController plot_chart_obj = PlotChartControllerFactory.getPlotChartController(typeOfChart, mapForChart, Integer.parseInt(this.yearformat), 
 				Integer.parseInt(this.startingyear), Integer.parseInt(this.endingyear));
-		obj.plotChart();
-		System.gc();
-		
-		
-		// ----------------- Testing -----------------
-	
+		plot_chart_obj.plotChart();
 		
 	}
+	
+	 String getResourcePath(String typeOfChart) {
+		 String fxmlResourcePath = "";
+		 
+		 if (typeOfChart.equalsIgnoreCase("bar")) 
+			 fxmlResourcePath =  "..//resources//barchart//BarChart.fxml";
+		 
+		 else if (typeOfChart.equalsIgnoreCase("timeline")) 
+			 fxmlResourcePath =  "..//resources//timelinechart//TimelineChart.fxml";
+		 
+		 else if (typeOfChart.equalsIgnoreCase("scatter")) 
+			 fxmlResourcePath =  "..//resources/scatterchart//ScatterChart.fxml";
+		 
+		 return fxmlResourcePath;
+			  
+	 }
+	
 	
 	void closeWindow(ActionEvent event) {
 		Node source = (Node) event.getSource();
@@ -137,33 +142,33 @@ public class Controller implements Initializable {
 	    stage.close();
 	}
 	
-	void passDataToDB(List<?> ... listOfLists) {
-		for(List<?> lst: listOfLists) {
-			for(Object el: lst)
-				System.out.println(el);
-		}
-	}
+	
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Names n = new Names();
+		Names names_object = Names.getInstance();		
 		
-		ObservableList<String> list1 = FXCollections.observableArrayList(n.getCountries());
-		countryComb.setItems(list1);
+		ObservableList<String> countryListForCombo = FXCollections.observableArrayList(names_object.getCountries());
+		countryComb.setItems(countryListForCombo);
 
 		
-		n.getNY_indic().addAll(n.getSE_indic());
-		ObservableList<String> list2 = FXCollections.observableArrayList(n.getNY_indic());
-		indicatorComb.setItems(list2);
+		names_object.getNY_indic().addAll(names_object.getSE_indic());	// merge NY and SE indicator families' lists.
 		
-		ObservableList<String> list3 = FXCollections.observableArrayList(n.getYearSpan());
-		yearformatComb.setItems(list3);
 		
-		ObservableList<String> list4 = FXCollections.observableArrayList(n.getYears());
-		startingyearComb.setItems(list4);
-		endingyearComb.setItems(list4);
+		ObservableList<String> indicatorListForCombo = FXCollections.observableArrayList(names_object.getNY_indic());
+		indicatorComb.setItems(indicatorListForCombo);
 		
+		ObservableList<String> yearFormatListForCombo = FXCollections.observableArrayList(names_object.getYearSpan());
+		yearformatComb.setItems(yearFormatListForCombo);
+		
+		ObservableList<String> yearsListForCombo = FXCollections.observableArrayList(names_object.getYears());
+		startingyearComb.setItems(yearsListForCombo);
+		endingyearComb.setItems(yearsListForCombo);
+		
+		ObservableList<String> chartTypeListForCombo = FXCollections.observableArrayList(names_object.getChartTypes());
+		charttypeComb.setItems(chartTypeListForCombo);
 	}
 	
 	
@@ -182,6 +187,7 @@ public class Controller implements Initializable {
 	
 	public void isAcceptableForm(int yearformat, int startingyear, int endingyear) {
 		if (endingyear - startingyear < 0) {
+			System.out.println("Aborting.");
 			System.out.println("Ending year must be greater than starting year.");
 			System.exit(-1);
 		}

@@ -14,7 +14,7 @@ public class ValueFromCountryAndIndicatorDAOMySQLImpl implements ValueFromCountr
 	private Map<List<String>, Long> indicatorYearlyValueForCountry;
 	
 	public ValueFromCountryAndIndicatorDAOMySQLImpl() {
-		connection = new Connector();
+		connection = Connector.getInstance();
 		indicatorYearlyValueForCountry = new HashMap<List<String>, Long>();
 	} 
 	

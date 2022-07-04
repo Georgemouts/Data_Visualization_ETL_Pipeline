@@ -7,6 +7,18 @@ import java.util.Arrays;
 
 
 public class Names {
+	private static Names singleInstance = null;
+	
+	
+	public Names() {}
+	
+	public static Names getInstance() {
+		if (singleInstance == null)
+			singleInstance = new Names();
+		return singleInstance;
+	}
+	
+	
 	private List<String> NY_indic = new ArrayList<String>(Arrays.asList(
 			"Net primary income (Net income from abroad) (current LCU)", 
 			"GNI growth (annual %)", 
@@ -105,7 +117,6 @@ public class Names {
 	
 	private List<String> SE_indic = new ArrayList<String>(Arrays.asList(
 			"Tertiary education, academic staff (% female)", 
-			"Educational attainment, at least Bachelor's or equivalent, population 25+, female (%) (cumulative)", 
 			"Progression to secondary school (%)", 
 			"Secondary education, general pupils", 
 			"Lower secondary school starting age (years)", 
@@ -114,10 +125,8 @@ public class Names {
 			"Primary completion rate, male (% of relevant age group)", 
 			"Literacy rate, adult total (% of people ages 15 and above)", 
 			"Expenditure on secondary education (% of government expenditure on education)", 
-			"Educational attainment, at least Master's or equivalent, population 25+, total (%) (cumulative)", 
 			"Trained teachers in upper secondary education (% of total teachers)", 
 			"School enrollment, secondary, female (% gross)", 
-			"Educational attainment, at least completed post-secondary, population 25+, male (%) (cumulative)", 
 			"Adjusted net enrollment rate, primary, female (% of primary school age children)", 
 			"School enrollment, primary, private (% of total primary)", 
 			"Pupil-teacher ratio, primary", 
@@ -126,26 +135,21 @@ public class Names {
 			"Pupil-teacher ratio, tertiary", 
 			"Secondary education, teachers (% female)", 
 			"School enrollment, secondary, male (% net)", 
-			"Educational attainment, at least completed upper secondary, population 25+, total (%) (cumulative)",
 			"Children out of school, female (% of female primary school age)", 
 			"Persistence to last grade of primary, female (% of cohort)", 
 			"Gross intake ratio in first grade of primary education, female (% of relevant age group)", 
 			"Trained teachers in preprimary education, male (% of male teachers)", 
 			"Literacy rate, youth male (% of males ages 15-24)", 
 			"Current education expenditure, tertiary (% of total expenditure in tertiary public institutions)", 
-			"Educational attainment, Doctoral or equivalent, population 25+, female (%) (cumulative)", 
 			"Trained teachers in lower secondary education, male (% of male teachers)", 
 			"Pupil-teacher ratio, secondary", 
 			"Lower secondary completion rate, total (% of relevant age group)", 
 			"Trained teachers in primary education, male (% of male teachers)", 
-			"Net intake rate in grade 1, male (% of official school-age population)", 
-			"Educational attainment, at least completed primary, population 25+ years, male (%) (cumulative)", 
+			"Net intake rate in grade 1, male (% of official school-age population)",  
 			"School enrollment, primary and secondary (gross), gender parity index (GPI)", 
-			"Government expenditure on education, total (% of government expenditure)", 
-			"Educational attainment, at least completed short-cycle tertiary, population 25+, total (%) (cumulative)", 
+			"Government expenditure on education, total (% of government expenditure)",  
 			"Secondary education, teachers, female", 
 			"School enrollment, secondary, female (% net)", 
-			"Educational attainment, at least completed upper secondary, population 25+, male (%) (cumulative)", 
 			"Children out of school, primary, female", 
 			"Persistence to grade 5, total (% of cohort)", 
 			"School enrollment, primary, male (% gross)", 
@@ -161,26 +165,21 @@ public class Names {
 			"Trained teachers in preprimary education (% of total teachers)", 
 			"Literacy rate, youth total (% of people ages 15-24)", 
 			"Government expenditure per student, primary (% of GDP per capita)", 
-			"Educational attainment, Doctoral or equivalent, population 25+, total (%) (cumulative)", 
 			"Trained teachers in secondary education, male (% of male teachers)", 
-			"Secondary education, vocational pupils", 
-			"Educational attainment, at least completed lower secondary, population 25+, male (%) (cumulative)", 
+			"Secondary education, vocational pupils",  
 			"Primary education, teachers", 
 			"Over-age students, primary, female (% of female enrollment)", 
 			"Primary education, duration (years)", 
 			"School enrollment, tertiary (gross), gender parity index (GPI)", 
 			"Expenditure on tertiary education (% of government expenditure on education)", 
-			"Educational attainment, at least completed short-cycle tertiary, population 25+, male (%) (cumulative)", 
 			"Secondary education, teachers", 
 			"School enrollment, secondary (% net)", 
-			"Educational attainment, at least completed upper secondary, population 25+, female (%) (cumulative)", 
 			"Children out of school, primary", 
 			"Persistence to grade 5, male (% of cohort)", 
 			"School enrollment, primary, female (% gross)", 
 			"School enrollment, preprimary, male (% gross)", 
 			"Literacy rate, youth female (% of females ages 15-24)", 
 			"Current education expenditure, primary (% of total expenditure in primary public institutions)", 
-			"Educational attainment, at least Bachelor's or equivalent, population 25+, male (%) (cumulative)", 
 			"Trained teachers in secondary education, female (% of female teachers)", 
 			"Secondary education, general pupils (% female)", 
 			"Lower secondary completion rate, female (% of relevant age group)", 
@@ -198,31 +197,24 @@ public class Names {
 			"Primary completion rate, female (% of relevant age group)", 
 			"Literacy rate, adult male (% of males ages 15 and above)", 
 			"Current education expenditure, secondary (% of total expenditure in secondary public institutions)", 
-			"Educational attainment, at least Bachelor's or equivalent, population 25+, total (%) (cumulative)", 
 			"Trained teachers in lower secondary education, female (% of female teachers)", 
 			"Pupil-teacher ratio, lower secondary", 
 			"Lower secondary completion rate, male (% of relevant age group)", 
 			"Trained teachers in primary education, female (% of female teachers)", 
 			"Net intake rate in grade 1, female (% of official school-age population)", 
-			"Educational attainment, at least completed primary, population 25+ years, female (%) (cumulative)", 
 			"School enrollment, primary (gross), gender parity index (GPI)", 
 			"Expenditure on primary education (% of government expenditure on education)", 
-			"Educational attainment, at least Master's or equivalent, population 25+, female (%) (cumulative)", 
 			"Trained teachers in upper secondary education, female (% of female teachers)", 
 			"Secondary education, vocational pupils (% female)", 
-			"Educational attainment, at least completed lower secondary, population 25+, total (%) (cumulative)", 
 			"Primary education, teachers (% female)", 
 			"Over-age students, primary, male (% of male enrollment)", 
 			"Primary education, pupils", 
 			"Preprimary education, duration (years)", 
 			"Current education expenditure, total (% of total expenditure in public institutions)", 
-			"Educational attainment, Doctoral or equivalent, population 25+, male (%) (cumulative)", 
 			"Trained teachers in lower secondary education (% of total teachers)", 
 			"Pupil-teacher ratio, upper secondary", 
-			"Educational attainment, at least completed lower secondary, population 25+, female (%) (cumulative)", 
 			"Trained teachers in primary education (% of total teachers)", 
 			"Net intake rate in grade 1 (% of official school-age population)", 
-			"Educational attainment, at least completed primary, population 25+ years, total (%) (cumulative)", 
 			"School enrollment, secondary (gross), gender parity index (GPI)", 
 			"School enrollment, tertiary, female (% gross)", 
 			"Adolescents out of school, male (% of male lower secondary school age)", 
@@ -234,19 +226,15 @@ public class Names {
 			"Primary school starting age (years)", 
 			"Literacy rate, adult female (% of females ages 15 and above)", 
 			"Government expenditure per student, secondary (% of GDP per capita)", 
-			"Educational attainment, at least Master's or equivalent, population 25+, male (%) (cumulative)", 
 			"Trained teachers in upper secondary education, male (% of male teachers)", 
 			"School enrollment, secondary (% gross)", 
-			"Educational attainment, at least completed post-secondary, population 25+, female (%) (cumulative)", 
 			"Adjusted net enrollment rate, primary (% of primary school age children)", 
 			"Over-age students, primary (% of enrollment)", 
 			"Primary education, pupils (% female)", 
 			"Pupil-teacher ratio, preprimary", 
 			"Government expenditure per student, tertiary (% of GDP per capita)", 
-			"Educational attainment, at least completed short-cycle tertiary, population 25+, female (%) (cumulative)", 
 			"Trained teachers in secondary education (% of total teachers)", 
 			"School enrollment, secondary, male (% gross)", 
-			"Educational attainment, at least completed post-secondary, population 25+, total (%) (cumulative)", 
 			"Adjusted net enrollment rate, primary, male (% of primary school age children)", 
 			"Persistence to grade 5, female (% of cohort)", 
 			"School enrollment, primary (% gross)", 
@@ -269,21 +257,33 @@ public class Names {
 			"1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011",
 			"2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"));
 	
+	private List<String> chartTypes = new ArrayList<String>(Arrays.asList("Timeline", "Bar", "Scatter"));
 	
 	
+	public List<String> getChartTypes() {
+		return chartTypes;
+	}
+	
+	public void setChartTypes(List<String> chartTypes) {
+		this.chartTypes = chartTypes;
+	}
 	
 	public List<String> getNY_indic() {
 		return NY_indic;
 	}
+	
 	public List<String> getSE_indic() {
 		return SE_indic;
 	}
+	
 	public List<String> getCountries() {
 		return countries;
 	}
+	
 	public List<String> getYearSpan() {
 		return yearSpan;
 	}
+	
 	public List<String> getYears() {
 		return years;
 	}
@@ -291,15 +291,19 @@ public class Names {
 	public void setYearSpan(List<String> yearSpan) {
 		this.yearSpan = yearSpan;
 	}
+	
 	public void setYears(List<String> years) {
 		this.years = years;
 	}
+	
 	public void setNY_indic(List<String> nY_indic) {
 		NY_indic = nY_indic;
 	}
+	
 	public void setSE_indic(List<String> sE_indic) {
 		SE_indic = sE_indic;
 	}
+	
 	public void setCountries(List<String> countries) {
 		this.countries = countries;
 	}

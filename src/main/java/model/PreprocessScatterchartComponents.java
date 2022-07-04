@@ -7,13 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 
-public class PreprocessScatterchartComponents {
+public class PreprocessScatterchartComponents extends TemplatePreprocessChartComponents {
 	private Map<List<String>, Long> valueFromIndicatorYearCountryMap;
 	
 	public PreprocessScatterchartComponents(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
+		super(valueFromIndicatorYearCountryMap);
 		this.valueFromIndicatorYearCountryMap = valueFromIndicatorYearCountryMap;
 	}
 	
@@ -21,8 +24,7 @@ public class PreprocessScatterchartComponents {
 	// TODO: move it to main.java.model 
 		public void addSeriesToScatterchartLegend(ScatterChart scatterChart) {
 			List<List<String>> country_indicatorPairList = getCountry_IndicatorPairs(filterListFromYears());
-	        System.gc();
-	        
+	    
 	        
 	        for (List<String> pair: country_indicatorPairList) {
 	        	
@@ -46,41 +48,8 @@ public class PreprocessScatterchartComponents {
 	        	scatterChart.getData().add(series);
 	        }		
 		}
+
+
+	
 		
-		// TODO: move it to main.java.model 
-		public List<List<String>> getCountry_IndicatorPairs(List<List<String>> country_indicatorPairList) {
-			Set<List<String>> set = new LinkedHashSet<>();
-			  
-	        // Add the elements to set
-	        set.addAll(country_indicatorPairList);
-	  
-	        // Clear the list
-	        country_indicatorPairList.clear();
-	  
-	        // add the elements of set
-	        // with no duplicates to the list
-	        country_indicatorPairList.addAll(set);
-	        
-	        return country_indicatorPairList;
-		}	
-		
-		/**
-		 * @return :  list with country_indicator pairs.
-		 */
-		
-		
-		
-		
-		public List<List<String>> filterListFromYears() {
-			List<List<String>> country_indicator_yearList = new ArrayList<List<String>>();
-			
-			// Store country name and indicator name into country_indicator_yearList.
-			for (Map.Entry<List<String>, Long> entry : valueFromIndicatorYearCountryMap.entrySet()) {
-	    	    List<String> keyList = entry.getKey();
-	    	    
-	    	    // country name at index 0, indicator name at index 1.
-	    	    country_indicator_yearList.add(keyList.subList(0, 2));
-			}
-			return country_indicator_yearList;
-		}
 }

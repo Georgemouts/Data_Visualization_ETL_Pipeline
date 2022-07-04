@@ -15,6 +15,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
 import main.java.model.PreprocessBarchartComponents;
+import main.java.model.TemplatePreprocessChartComponents;
 
 
 public class PlotBarChartController extends PlotChartController {
@@ -46,16 +47,10 @@ public class PlotBarChartController extends PlotChartController {
 		stage.setTitle("Bar Chart");
 		
 		
-		
-		
-
         //defining the axes
         xAxis = new CategoryAxis();
         
-      
         
-  
-    	
     	long maxIndicatorValue = Collections.max(valueFromIndicatorYearCountryMap.values());
 		long spacing = maxIndicatorValue / 100;
     	
@@ -76,6 +71,38 @@ public class PlotBarChartController extends PlotChartController {
         stage.setScene(scene);
         stage.show();
     }
+
+	public static Map<List<String>, Long> getValueFromIndicatorYearCountryMap() {
+		return valueFromIndicatorYearCountryMap;
+	}
+
+	public static int getYearFormat() {
+		return yearFormat;
+	}
+
+	public static int getStartingYear() {
+		return startingYear;
+	}
+
+	public static int getEndingYear() {
+		return endingYear;
+	}
+
+	public static void setValueFromIndicatorYearCountryMap(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
+		PlotBarChartController.valueFromIndicatorYearCountryMap = valueFromIndicatorYearCountryMap;
+	}
+
+	public static void setYearFormat(int yearFormat) {
+		PlotBarChartController.yearFormat = yearFormat;
+	}
+
+	public static void setStartingYear(int startingYear) {
+		PlotBarChartController.startingYear = startingYear;
+	}
+
+	public static void setEndingYear(int endingYear) {
+		PlotBarChartController.endingYear = endingYear;
+	}
 
 
 	

@@ -1,22 +1,21 @@
 package main.java.controller;
 
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
-	Scene scene;
+	private Scene scene;
 	
 	@Override
-	public void start(Stage primaryStage) throws Exception{
-		Parent root = FXMLLoader.load(getClass().getResource("..//view//sample.fxml"));
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("..//resources//main//SelectionsWindow.fxml"));
 		scene = new Scene(root, 500, 400);
 		
-		primaryStage.setTitle("Database connection");
+		primaryStage.setTitle("Selections");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		

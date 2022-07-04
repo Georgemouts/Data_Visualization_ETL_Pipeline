@@ -13,7 +13,7 @@ public class CountryDAOMySQLImpl implements CountryDAO {
 	private List<String> countryNames;
 	
 	public CountryDAOMySQLImpl() {
-		this.connection = new Connector();	// TODO: maybe can me prototyped.
+		this.connection = Connector.getInstance();	
 		this.countryIds = new ArrayList<Integer>();
 	}
 	
@@ -72,6 +72,38 @@ public class CountryDAOMySQLImpl implements CountryDAO {
 	}
 	
 	
+	public Connector getConnection() {
+		return connection;
+	}
+
+	public ResultSet getQueryResult() {
+		return queryResult;
+	}
+
+	public List<Integer> getCountryIds() {
+		return countryIds;
+	}
+
+	public List<String> getCountryNames() {
+		return countryNames;
+	}
+
+	public void setConnection(Connector connection) {
+		this.connection = connection;
+	}
+
+	public void setQueryResult(ResultSet queryResult) {
+		this.queryResult = queryResult;
+	}
+
+	public void setCountryIds(List<Integer> countryIds) {
+		this.countryIds = countryIds;
+	}
+
+	public void setCountryNames(List<String> countryNames) {
+		this.countryNames = countryNames;
+	}
+
 	@Override
 	public String readSingleCountryNameFromId(int id) {
 		String query = "SELECT name FROM country WHERE country.id = " + id + ";";
